@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: money-mori-api
+
+  config:
+    import:
+      - app/cors/cors-local.yml
+      - app/time/time.yml # classpath:/app/time/time.yml
+      - app/password/password-encoder.yml
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/money
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 10000
+      idle-timeout: 10000
+      validation-timeout: 10000
+      max-lifetime: 580000
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.side.moneymoriapi.domain.*
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  port: 8000
