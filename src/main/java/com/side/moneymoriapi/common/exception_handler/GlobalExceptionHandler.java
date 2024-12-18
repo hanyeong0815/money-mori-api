@@ -23,7 +23,6 @@ public final class GlobalExceptionHandler {
      * */
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ResponseError> handleCustomException(CustomException exception) {
-        exception.printStackTrace();
         ErrorCode errorCode = exception.getErrorCode();
         HttpStatus httpStatus = errorCode.defaultHttpStatus();
 
@@ -37,7 +36,6 @@ public final class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoContentException.class)
     public ResponseEntity<Void> handleNoContentException(NoContentException exception) {
-        exception.printStackTrace();
         return ResponseEntity.noContent().build();
     }
 
@@ -47,7 +45,6 @@ public final class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseError> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException exception) {
-        exception.printStackTrace();
 
         FieldError fieldError = exception.getBindingResult().getFieldError();
 
