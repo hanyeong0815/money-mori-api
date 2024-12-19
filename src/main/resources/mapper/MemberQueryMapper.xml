@@ -5,4 +5,20 @@
     <select id="countMemberByUsername" resultType="int" >
         SELECT COUNT(*) FROM member.member WHERE username LIKE #{username}
     </select>
+    <select id="findByUsernameAndPassword" resultType="com.side.moneymoriapi.projection.member.MemberProjection$MemberUsernamePasswordProjection">
+        SELECT
+            id, username, password
+        from
+            member.member
+        WHERE
+            username LIKE #{username}
+    </select>
+    <select id="findRolesByMemberId" resultType="String">
+        SELECT
+            role
+        FROM
+            member.roles
+        WHERE
+            member_id = #{id}
+    </select>
 </mapper>
