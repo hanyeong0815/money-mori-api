@@ -2,6 +2,7 @@ package com.side.moneymoriapi.domain.member;
 
 import com.side.moneymoriapi.domain.type.RoleType;
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Instant;
 import java.util.List;
@@ -21,4 +22,8 @@ public class Member {
     private Instant createdAt;
     private Instant updatedAt;
     private List<RoleType> roles;
+
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
+    }
 }

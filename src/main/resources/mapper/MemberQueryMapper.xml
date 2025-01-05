@@ -5,7 +5,8 @@
     <select id="countMemberByUsername" resultType="int" >
         SELECT COUNT(*) FROM member.member WHERE username LIKE #{username}
     </select>
-    <select id="findByUsernameAndPassword" resultType="com.side.moneymoriapi.projection.member.MemberProjection$MemberUsernamePasswordProjection">
+
+    <select id="findByUsername" resultType="com.side.moneymoriapi.projection.member.MemberProjection$MemberUsernamePasswordProjection">
         SELECT
             id, username, password
         from

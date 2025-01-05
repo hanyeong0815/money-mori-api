@@ -29,6 +29,7 @@ mybatis:
   type-aliases-package: com.side.moneymoriapi.domain.*
   configuration:
     map-underscore-to-camel-case: true
+  type-handlers-package: com.side.moneymoriapi.config.mybatis
 
 server:
   port: 8000

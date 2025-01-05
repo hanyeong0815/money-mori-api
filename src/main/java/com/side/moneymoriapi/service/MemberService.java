@@ -21,6 +21,7 @@ import com.side.moneymoriapi.utils.time.ServerTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -38,21 +39,27 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
     private final PasswordEncoder pwEncoder;
 
     private final JwtProvider jwtProvider;
-    private final MemberQueryMapper memberQueryMapper;
 
     private final StrongStringRandom random;
     private final ServerTime serverTime;
 
+    private static final Long REFRESH_TOKEN_TTL = 1L;
+
+
+    @Transactional
     @HasMember
     @Override
     public Member createMember(CreateMemberRequestDto dto) {
         // member build
         Member newMember = Member.builder()
                 .username(dto.username())
-                .password(pwEncoder.encode(dto.password()))
+                .password(dto.password()) // rawPassword
                 .email(dto.email())
                 .roles(List.of(RoleType.USER))
                 .build();
+
+        // hashing password
+        newMember.encodePassword(pwEncoder);
 
         // member save
         commendMapper.createMember(newMember);
@@ -62,10 +69,11 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
         return newMember;
     }
 
+    @Transactional
     @Override
     public LoginMemberResponseDto loginMember(LoginMemberRequestDto dto) {
         // find member and is empty throw exception
-        MemberUsernamePasswordProjection projection = queryMapper.findByUsernameAndPassword(dto.username())
+        MemberUsernamePasswordProjection projection = queryMapper.findByUsername(dto.username())
                 .orElseThrow(
                         MemberErrorCode.INVALID_USERNAME_OR_PASSWORD::defaultException
                 );
@@ -77,7 +85,7 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
         );
 
         // find member's roles and convert List<String> to String
-        String roles = String.join(",", memberQueryMapper.findRolesByMemberId(projection.id()));
+        String roles = String.join(",", queryMapper.findRolesByMemberId(projection.id()));
 
         // create accessToken and RefreshToken and create dto for response
         JwtTokenPair tokenPair = JwtTokenPair.builder()
@@ -99,10 +107,10 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
                 .subject(subject)
                 .refreshToken(refreshToken)
                 .createdAt(now)
-                .ttl(1L)
+                .ttl(REFRESH_TOKEN_TTL)
                 .build();
 
-        RefreshToken savedRefreshToken = refreshTokenRepository.save(refreshTokenEntity); // saving to redis
-        return savedRefreshToken.getRefreshToken();
+        refreshTokenRepository.save(refreshTokenEntity); // saving to redis
+        return refreshToken;
     }
 }
