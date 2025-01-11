@@ -26,15 +26,10 @@ create table member.roles (
 -- create transaction schema
 create schema transaction;
 
--- create transactionType table
-create table transaction.transaction_type(
-    id bigserial primary key ,
-    type varchar(50)
-);
-
 -- create category table
 create table transaction.category(
     id bigserial primary key ,
+    member_id uuid not null,
     category varchar(50)
 );
 
@@ -42,7 +37,7 @@ create table transaction.category(
 create table transaction.transaction (
     id bigserial primary key,
     member_id uuid,
-    type_id bigserial not null,
+    type varchar(15) not null,
     category_id bigserial not null,
     amount bigint not null,
     description varchar(100),

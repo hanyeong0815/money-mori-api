@@ -14,6 +14,7 @@
         WHERE
             username LIKE #{username}
     </select>
+
     <select id="findRolesByMemberId" resultType="String">
         SELECT
             role
@@ -21,5 +22,14 @@
             member.roles
         WHERE
             member_id = #{id}
+    </select>
+
+    <select id="findIdByUsername" resultType="java.util.UUID">
+        SELECT
+            id
+        FROM
+            member.member
+        WHERE
+            username = #{username}
     </select>
 </mapper>

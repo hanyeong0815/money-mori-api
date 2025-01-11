@@ -12,4 +12,6 @@ public interface MemberQueryMapper {
     int countMemberByUsername(String username);
     Optional<MemberUsernamePasswordProjection> findByUsername(@Param("username") String username);
     List<String> findRolesByMemberId(@Param("id") UUID MemberId);
+
+    Optional<UUID> findIdByUsername(String username);
 }

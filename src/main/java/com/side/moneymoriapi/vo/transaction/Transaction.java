@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Transaction {
     private Long id;
     private UUID memberId;
-    private Long typeId;
+    private Long type;
     private Long categoryId;
     private Integer amount;
     private String description;

@@ -89,7 +89,7 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
 
         // create accessToken and RefreshToken and create dto for response
         JwtTokenPair tokenPair = JwtTokenPair.builder()
-                .accessToken(jwtProvider.createToken(projection.username(), roles))
+                .accessToken("Bearer " + jwtProvider.createToken(projection.username(), roles))
                 .refreshToken(createRefreshToken(projection.username()))
                 .build();
 
