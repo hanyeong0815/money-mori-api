@@ -2,8 +2,8 @@ package com.side.moneymoriapi.api;
 
 import com.side.moneymoriapi.api.member.MemberCommendApi;
 import com.side.moneymoriapi.common.exception_handler.GlobalExceptionHandler;
-import com.side.moneymoriapi.domain.member.Member;
-import com.side.moneymoriapi.domain.type.RoleType;
+import com.side.moneymoriapi.vo.member.Member;
+import com.side.moneymoriapi.vo.type.RoleType;
 import com.side.moneymoriapi.dto.member.CreateMemberDto.CreateMemberRequestDto;
 import com.side.moneymoriapi.usecase.member.CreateMemberUseCase;
 import com.side.moneymoriapi.utils.time.ServerTime;

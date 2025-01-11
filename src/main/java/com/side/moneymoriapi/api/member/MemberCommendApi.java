@@ -1,6 +1,6 @@
 package com.side.moneymoriapi.api.member;
 
-import com.side.moneymoriapi.domain.member.Member;
+import com.side.moneymoriapi.vo.member.Member;
 import com.side.moneymoriapi.dto.member.CreateMemberDto.CreateMemberRequestDto;
 import com.side.moneymoriapi.usecase.member.CreateMemberUseCase;
 import lombok.RequiredArgsConstructor;

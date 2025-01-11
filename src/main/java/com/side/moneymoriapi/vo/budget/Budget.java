@@ -1,9 +1,8 @@
-package com.side.moneymoriapi.domain.budget;
+package com.side.moneymoriapi.vo.budget;
 
 import lombok.*;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.UUID;
 
 @Builder
@@ -15,7 +14,7 @@ import java.util.UUID;
 public class Budget {
     private Long id;
     private UUID memberId;
-    private Date month;
+    private String month;
     private Integer amount;
     private Instant createdAt;
 }

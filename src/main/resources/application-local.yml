@@ -26,7 +26,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.side.moneymoriapi.domain.*
+  type-aliases-package: com.side.moneymoriapi.vo.*
   configuration:
     map-underscore-to-camel-case: true
   type-handlers-package: com.side.moneymoriapi.config.mybatis

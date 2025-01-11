@@ -1,4 +1,4 @@
-package com.side.moneymoriapi.domain.type;
+package com.side.moneymoriapi.vo.type;
 
 public enum RoleType {
     ADMIN,

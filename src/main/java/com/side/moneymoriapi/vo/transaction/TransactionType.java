@@ -1,4 +1,4 @@
-package com.side.moneymoriapi.domain.transaction;
+package com.side.moneymoriapi.vo.transaction;
 
 import lombok.*;
 

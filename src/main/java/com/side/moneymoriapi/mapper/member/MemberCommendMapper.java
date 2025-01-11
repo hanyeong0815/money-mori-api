@@ -1,7 +1,7 @@
 package com.side.moneymoriapi.mapper.member;
 
-import com.side.moneymoriapi.domain.member.Member;
-import com.side.moneymoriapi.domain.type.RoleType;
+import com.side.moneymoriapi.vo.member.Member;
+import com.side.moneymoriapi.vo.type.RoleType;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,4 +1,4 @@
-package com.side.moneymoriapi.domain.category;
+package com.side.moneymoriapi.vo.category;
 
 import lombok.*;
 

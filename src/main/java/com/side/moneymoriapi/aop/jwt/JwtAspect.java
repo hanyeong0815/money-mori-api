@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import static com.side.moneymoriapi.utils.exception.Preconditions.validate;
@@ -18,12 +19,13 @@ public class JwtAspect {
     private final JwtProvider jwtProvider;
     private final HttpServletRequest httpRequest;
 
+    @Before("@annotation(jwtSecured)")
     public void validateJwtToken(JoinPoint joinPoint, JwtSecured jwtSecured) {
         String authHeader = httpRequest.getHeader("Authorization");
 
         validate(
                 authHeader != null || authHeader.startsWith("Bearer "),
-                JwtErrorCode.INVALID_JWT_TOKEN
+                JwtErrorCode.UNSUPPORTED_JWT_TOKEN
         );
 
         String token = authHeader.substring(7);
@@ -31,7 +33,7 @@ public class JwtAspect {
         Claims claims = jwtProvider.validateToken(token);
 
         if (jwtSecured.roles().length > 0) {
-            String userRole = claims.get("role", String.class);
+            String userRole = claims.get("auth", String.class);
             boolean hasRole = false;
 
             for (String role : jwtSecured.roles()) {

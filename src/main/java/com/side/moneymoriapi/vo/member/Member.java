@@ -1,6 +1,6 @@
-package com.side.moneymoriapi.domain.member;
+package com.side.moneymoriapi.vo.member;
 
-import com.side.moneymoriapi.domain.type.RoleType;
+import com.side.moneymoriapi.vo.type.RoleType;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

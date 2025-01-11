@@ -1,8 +1,8 @@
 package com.side.moneymoriapi.service;
 
 import com.side.moneymoriapi.aop.member.HasMember;
-import com.side.moneymoriapi.domain.member.Member;
-import com.side.moneymoriapi.domain.type.RoleType;
+import com.side.moneymoriapi.vo.member.Member;
+import com.side.moneymoriapi.vo.type.RoleType;
 import com.side.moneymoriapi.dto.member.CreateMemberDto.CreateMemberRequestDto;
 import com.side.moneymoriapi.dto.member.LoginMemberDto.JwtTokenPair;
 import com.side.moneymoriapi.dto.member.LoginMemberDto.LoginMemberRequestDto;
