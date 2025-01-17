@@ -3,6 +3,7 @@ package com.side.moneymoriapi.api.member;
 import com.side.moneymoriapi.vo.member.Member;
 import com.side.moneymoriapi.dto.member.CreateMemberDto.CreateMemberRequestDto;
 import com.side.moneymoriapi.usecase.member.CreateMemberUseCase;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class MemberCommendApi {
     private final CreateMemberUseCase createMemberUseCase;
 
     @PostMapping("")
-    public ResponseEntity<Member> createMember(@RequestBody CreateMemberRequestDto dto) {
+    public ResponseEntity<Member> createMember(@RequestBody @Valid CreateMemberRequestDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createMemberUseCase.createMember(dto));
     }
