@@ -6,6 +6,7 @@ public record MemberProjection() {
     public record MemberUsernamePasswordProjection (
             UUID id,
             String username,
-            String password
+            String password,
+            String nickname
     ) {}
 }

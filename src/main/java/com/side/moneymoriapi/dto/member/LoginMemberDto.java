@@ -14,6 +14,7 @@ public record LoginMemberDto() {
     @Builder
     public record LoginMemberResponseDto(
             String username,
+            String nickname,
             JwtTokenPair tokenPair
     ) {}
 

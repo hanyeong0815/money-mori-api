@@ -55,6 +55,7 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
                 .username(dto.username())
                 .password(dto.password()) // rawPassword
                 .email(dto.email())
+                .nickname(dto.nickname())
                 .roles(List.of(RoleType.USER))
                 .build();
 
@@ -95,6 +96,7 @@ public class MemberService implements CreateMemberUseCase, LoginMemberUseCase {
 
         return LoginMemberResponseDto.builder()
                 .username(projection.username())
+                .nickname(projection.nickname())
                 .tokenPair(tokenPair)
                 .build();
     }

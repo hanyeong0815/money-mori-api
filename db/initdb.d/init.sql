@@ -9,6 +9,7 @@ create table member.member (
     id uuid primary key default uuid_generate_v4(),
     username varchar(50) not null,
     password varchar(256),
+    nickname varchar(100),
     email varchar(100),
     created_at timestamp(6) default current_timestamp(6),
     updated_at timestamp(6)

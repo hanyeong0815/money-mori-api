@@ -4,9 +4,9 @@
 <mapper namespace="com.side.moneymoriapi.mapper.member.MemberCommendMapper">
     <insert id="createMember" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO member.member
-            (username, password, email)
+            (username, password, email, nickname)
         values
-            (#{username}, #{password}, #{email})
+            (#{username}, #{password}, #{email}, #{nickname})
     </insert>
     
     <insert id="insertRoles">

@@ -8,6 +8,8 @@ public record CreateMemberDto() {
             String username,
             @NotBlank
             String password,
+            @NotBlank
+            String nickname,
             String email
     ) {}
 }

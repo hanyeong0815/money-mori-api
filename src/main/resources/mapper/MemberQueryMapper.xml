@@ -8,7 +8,7 @@
 
     <select id="findByUsername" resultType="com.side.moneymoriapi.projection.member.MemberProjection$MemberUsernamePasswordProjection">
         SELECT
-            id, username, password
+            id, username, password, nickname
         from
             member.member
         WHERE
